@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.horsen.pms.mapper.StaffMapper">
+    <!-- 查询所有员工 -->
+    <select id="queryStaffList" resultType="Staff">
+        select *
+        from pms_horsen.staff
+        where is_deleted = 0
+    </select>
+    <!-- 根据ID查询一个员工 -->
+    <select id="queryStaffById" resultType="Staff" parameterType="int">
+        select *
+        from pms_horsen.staff
+        where id = #{id}
+          and is_deleted = 0
+    </select>
+    <!-- 根据条件查询员工 -->
+    <select id="queryStaff" resultType="Staff" parameterType="Staff">
+        select *
+        from pms_horsen.staff
+        <where>
+            is_deleted = 0
+            <if test="name != null">and name like "%"#{name}"%"</if>
+            <if test="age != null">and age = #{age}</if>
+            <if test="graduateSchool != null">and graduate_school like "%"#{graduateSchool}"%"</if>
+            <if test="degree != null">and degree = #{degree}</if>
+            <if test="graduateTime != null">and graduate_time = #{graduateTime}</if>
+        </where>
+    </select>
+    <!-- 插入一个员工 -->
+    <insert id="insertStaff" parameterType="Staff">
+        insert into pms_horsen.staff(name, age, graduate_school, degree, graduate_time)
+        values (#{ame}, #{age}, #{graduateSchool}, #{degree}, #{graduateTime})
+    </insert>
+    <!-- 修改一个员工 -->
+    <update id="updateStaff" parameterType="Staff">
+        update pms_horsen.staff
+        <set>
+            <if test="name != null">name = #{name}</if>
+            <if test="age != null">age = #{age}</if>
+            <if test="graduateSchool != null">graduate_school = #{graduateSchool}</if>
+            <if test="degree != null">degree = #{degree}</if>
+            <if test="graduateTime != null">graduate_time = #{graduateTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 根据ID删除一个员工 -->
+    <update id="deleteStaff" parameterType="int">
+        update pms_horsen.staff
+        set is_deleted = 1
+        where id = #{id}
+    </update>
+</mapper>

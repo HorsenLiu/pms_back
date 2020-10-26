@@ -1,0 +1,42 @@
+# 服务端口
+server:
+  port: 8001
+
+spring:
+  # 返回json的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # 服务名
+  profiles:
+    active: dev
+  # mysql数据库连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pms_horsen?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    # 切换数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    # SpringBoot默认是不注入这些属性值的，需要自己绑定
+    # Druid数据源专有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+mybatis:
+  # 指定mybatis的核心配置文件与Mapper映射文件
+  mapper-locations: classpath:com/horsen/pms/mapper/*.xml
+  # 对应实体类的路径
+  type-aliases-package: com.horsen.pms.model
+  # 下划线转驼峰
+  configuration:
+    map-underscore-to-camel-case: true
