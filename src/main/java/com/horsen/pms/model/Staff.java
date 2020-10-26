@@ -29,7 +29,7 @@ public class Staff {
     @ApiModelProperty("学历")
     private String degree;
     @ApiModelProperty("毕业时间")
-    private Date graduateTime;
+    private String graduateTime;
     @ApiModelProperty("逻辑删除(1已删除,0未删除)")
     private Boolean isDeleted;
 }

@@ -2,6 +2,7 @@ package com.horsen.pms.mapper;
 
 import com.horsen.pms.model.Staff;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface StaffMapper {
     /**
      * 根据ID查询一个员工
      */
-    Staff queryStaffById(int id);
+    Staff queryStaffById(@Param("id") int id);
 
     /**
      * 根据条件查询员工
@@ -39,5 +40,5 @@ public interface StaffMapper {
     /**
      * 根据ID删除一个员工
      */
-    int deleteStaff(int id);
+    int deleteStaff(@Param("id") int id);
 }
