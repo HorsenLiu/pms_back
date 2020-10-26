@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.horsen.pms.mapper.TaskMapper">
+
+    <!-- 查询所有任务 -->
+    <select id="queryTaskList" resultType="Task">
+        select *
+        from pms_horsen.task
+        where is_deleted = 0
+    </select>
+
+    <!-- 根据ID查询一个任务 -->
+    <select id="queryTaskById" resultType="Task" parameterType="int">
+        select *
+        from pms_horsen.task
+        where id = #{id}
+          and is_deleted = 0
+    </select>
+
+    <!-- 根据条件查询任务 -->
+    <select id="queryTask" resultType="Task" parameterType="Task">
+        select *
+        from pms_horsen.task
+        <where>
+            is_deleted = 0
+            <if test="name != null">and name like "%"#{name}"%"</if>
+            <if test="startTime != null">and start_time = #{startTime}</if>
+            <if test="endTime != null">and end_time = #{endTime}</if>
+            <if test="leader != null">and leader = #{leader}</if>
+        </where>
+    </select>
+
+    <!-- 插入一个任务 -->
+    <insert id="insertTask" parameterType="Task">
+        insert into pms_horsen.task(name, start_time, end_time, leader)
+        values (#{name}, #{startTime}, #{endTime}, #{leader})
+    </insert>
+
+    <!-- 修改一个任务 -->
+    <update id="updateTask" parameterType="Task">
+        update pms_horsen.task
+        <set>
+            <if test="name != null">name like "%"#{name}"%"</if>
+            <if test="startTime != null">start_time = #{startTime}</if>
+            <if test="endTime != null">end_time = #{endTime}</if>
+            <if test="leader != null">eader = #{leader}</if>
+        </set>
+        where id = #{id} and is_deleted = 0
+    </update>
+
+    <!-- 根据ID删除一个任务 -->
+    <update id="deleteTask" parameterType="int">
+        update pms_horsen.task
+        set is_deleted = 1
+        where id = #{id}
+          and is_deleted = 0
+    </update>
+</mapper>

@@ -16,10 +16,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ApiModel(value = "TaskStaff对象", description = "任务_员工")
 public class TaskStaff {
-  @ApiModelProperty("主键ID")
-  private Integer id;
-  @ApiModelProperty("任务ID")
-  private Integer taskId;
-  @ApiModelProperty("员工ID")
-  private Integer staffId;
+    @ApiModelProperty("主键ID")
+    private Integer id;
+    @ApiModelProperty("任务ID")
+    private Integer taskId;
+    @ApiModelProperty("员工ID")
+    private Integer staffId;
 }

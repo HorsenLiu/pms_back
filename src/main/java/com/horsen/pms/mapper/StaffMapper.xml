@@ -47,13 +47,13 @@
             <if test="degree != null">degree = #{degree}</if>
             <if test="graduateTime != null">graduate_time = #{graduateTime}</if>
         </set>
-        where id = #{id}
+        where id = #{id} and is_deleted = 0
     </update>
 
     <!-- 根据ID删除一个员工 -->
     <update id="deleteStaff" parameterType="int">
         update pms_horsen.staff
         set is_deleted = 1
-        where id = #{id}
+        where id = #{id} and is_deleted = 0
     </update>
 </mapper>

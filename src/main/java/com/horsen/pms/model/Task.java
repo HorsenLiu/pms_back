@@ -16,14 +16,14 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ApiModel(value = "Task对象", description = "任务")
 public class Task {
-  @ApiModelProperty("任务ID")
-  private Integer id;
-  @ApiModelProperty("任务名称")
-  private String name;
-  @ApiModelProperty("开始时间")
-  private String startTime;
-  @ApiModelProperty("结束时间")
-  private String endTime;
-  @ApiModelProperty("任务负责人")
-  private String leader;
+    @ApiModelProperty("任务ID")
+    private Integer id;
+    @ApiModelProperty("任务名称")
+    private String name;
+    @ApiModelProperty("开始时间")
+    private String startTime;
+    @ApiModelProperty("结束时间")
+    private String endTime;
+    @ApiModelProperty("任务负责人")
+    private String leader;
 }
