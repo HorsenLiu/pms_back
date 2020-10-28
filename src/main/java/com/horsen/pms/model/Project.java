@@ -1,12 +1,13 @@
 package com.horsen.pms.model;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.util.List;
 
 /**
  * @author Horsen
@@ -25,4 +26,6 @@ public class Project {
     private String startTime;
     @ApiModelProperty("结束时间")
     private String endTime;
+
+    private List<Task> taskList;
 }

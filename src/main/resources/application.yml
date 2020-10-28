@@ -34,7 +34,7 @@ spring:
 
 mybatis:
   # 指定mybatis的核心配置文件与Mapper映射文件
-  mapper-locations: classpath:com/horsen/pms/mapper/*.xml
+  mapper-locations: classpath:com/horsen/pms/mapper/xml/*.xml
   # 对应实体类的路径
   type-aliases-package: com.horsen.pms.model
   # 下划线转驼峰

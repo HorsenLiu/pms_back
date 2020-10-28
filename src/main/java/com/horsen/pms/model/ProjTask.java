@@ -22,5 +22,4 @@ public class ProjTask {
     private Integer projId;
     @ApiModelProperty("任务ID")
     private Integer taskId;
-    private long idDeleted;
 }

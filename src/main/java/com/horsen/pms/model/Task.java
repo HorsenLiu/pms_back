@@ -24,6 +24,8 @@ public class Task {
     private String startTime;
     @ApiModelProperty("结束时间")
     private String endTime;
-    @ApiModelProperty("任务负责人")
-    private String leader;
+    @ApiModelProperty("项目ID")
+    private String projId;
+    @ApiModelProperty("负责人ID")
+    private String staffId;
 }

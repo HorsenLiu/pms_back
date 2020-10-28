@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.horsen.pms.mapper.ProjStaffMapper">
+
+    <!-- 查询所有项目_员工 -->
+    <select id="queryProjStaffList" resultType="ProjStaff">
+        select *
+        from pms_horsen.proj_staff
+        where is_deleted = 0
+    </select>
+
+    <!-- 根据ID查询一个项目_员工 -->
+    <select id="queryProjStaffById" resultType="ProjStaff" parameterType="int">
+        select *
+        from pms_horsen.proj_staff
+        where id = #{id}
+          and is_deleted = 0
+    </select>
+
+    <!-- 根据条件查询项目_员工 -->
+    <select id="queryProjStaff" resultType="ProjStaff" parameterType="ProjStaff">
+        select *
+        from pms_horsen.proj_staff
+        <where>
+            is_deleted = 0
+            <if test="projId != null">and projId = #{projId}</if>
+            <if test="staffId != null">and staffId = #{staffId}</if>
+        </where>
+    </select>
+    <select id="queryProjStaffList" resultType="com.horsen.pms.model.ProjStaff"></select>
+
+    <!-- 插入一个项目_员工 -->
+    <insert id="insertProjStaff" parameterType="ProjStaff">
+        insert into pms_horsen.proj_staff(projId, staffId)
+        values (#{projId}, #{staffId})
+    </insert>
+
+    <!-- 修改一个项目_员工 -->
+    <update id="updateProjStaff" parameterType="ProjStaff">
+        update pms_horsen.proj_staff
+        <set>
+            <if test="projId != null">projId = #{projId}</if>
+            <if test="staffId != null">staffId = #{staffId}</if>
+        </set>
+        where id = #{id} and is_deleted = 0
+    </update>
+
+    <!-- 根据ID删除一个项目_员工 -->
+    <update id="deleteProjStaff" parameterType="int">
+        update pms_horsen.proj_staff
+        set is_deleted = 1
+        where id = #{id} and is_deleted = 0
+    </update>
+</mapper>

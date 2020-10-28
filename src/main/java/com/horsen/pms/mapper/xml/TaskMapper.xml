@@ -26,7 +26,8 @@
             <if test="name != null">and name like "%"#{name}"%"</if>
             <if test="startTime != null">and start_time = #{startTime}</if>
             <if test="endTime != null">and end_time = #{endTime}</if>
-            <if test="leader != null">and leader = #{leader}</if>
+            <if test="projId != null">and proj_id = #{projId}</if>
+            <if test="staffId != null">and staff_id = #{staffId}</if>
         </where>
     </select>
 
@@ -43,7 +44,8 @@
             <if test="name != null">name like "%"#{name}"%"</if>
             <if test="startTime != null">start_time = #{startTime}</if>
             <if test="endTime != null">end_time = #{endTime}</if>
-            <if test="leader != null">eader = #{leader}</if>
+            <if test="projId != null">proj_id = #{projId}</if>
+            <if test="staffId != null">staff_id = #{staffId}</if>
         </set>
         where id = #{id} and is_deleted = 0
     </update>

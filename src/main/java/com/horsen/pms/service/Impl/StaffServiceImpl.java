@@ -1,7 +1,8 @@
-package com.horsen.pms.service;
+package com.horsen.pms.service.Impl;
 
 import com.horsen.pms.mapper.StaffMapper;
 import com.horsen.pms.model.Staff;
+import com.horsen.pms.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
