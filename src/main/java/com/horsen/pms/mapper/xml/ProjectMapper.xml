@@ -52,4 +52,6 @@
         set is_deleted = 1
         where id = #{id} and is_deleted = 0
     </update>
+
+    <!--  -->
 </mapper>

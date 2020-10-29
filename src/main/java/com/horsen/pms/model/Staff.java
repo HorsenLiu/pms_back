@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 /**
  * @author Horsen
  */
@@ -30,6 +28,4 @@ public class Staff {
     private String degree;
     @ApiModelProperty("毕业时间")
     private String graduateTime;
-
-    private List<Task> taskList;
 }

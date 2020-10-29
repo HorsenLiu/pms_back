@@ -25,7 +25,10 @@ public class Task {
     @ApiModelProperty("结束时间")
     private String endTime;
     @ApiModelProperty("项目ID")
-    private String projId;
+    private Integer projId;
     @ApiModelProperty("负责人ID")
-    private String staffId;
+    private Integer staffId;
+
+    private String projName;
+    private String staffName;
 }

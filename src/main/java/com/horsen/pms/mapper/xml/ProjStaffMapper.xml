@@ -27,7 +27,6 @@
             <if test="staffId != null">and staffId = #{staffId}</if>
         </where>
     </select>
-    <select id="queryProjStaffList" resultType="com.horsen.pms.model.ProjStaff"></select>
 
     <!-- 插入一个项目_员工 -->
     <insert id="insertProjStaff" parameterType="ProjStaff">

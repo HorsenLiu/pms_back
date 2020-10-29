@@ -1,7 +1,6 @@
 package com.horsen.pms.mapper;
 
 import com.horsen.pms.model.ProjStaff;
-import com.horsen.pms.model.ProjStaff;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 /**
  * @author Horsen
  */
@@ -26,6 +24,4 @@ public class Project {
     private String startTime;
     @ApiModelProperty("结束时间")
     private String endTime;
-
-    private List<Task> taskList;
 }
