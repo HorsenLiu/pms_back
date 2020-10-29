@@ -63,24 +63,6 @@ public class TaskController {
         return R.success().setData("items", list);
     }
 
-    @ApiOperation("查询一个项目的所有任务")
-    @PostMapping("/{projId}")
-    public R queryTaskByProjId(
-            @ApiParam(name = "projId", value = "员工ID", required = true)
-            @PathVariable("projId") Integer projId) {
-        List<Task> list = taskService.queryTaskByProjId(projId);
-        return R.success().setData("items", list);
-    }
-
-    @ApiOperation("查询一个员工的所有任务")
-    @PostMapping("/{staffId}")
-    public R queryTaskByStaffId(
-            @ApiParam(name = "staffId", value = "员工ID", required = true)
-            @PathVariable("staffId") Integer staffId) {
-        List<Task> list = taskService.queryTaskByStaffId(staffId);
-        return R.success().setData("items", list);
-    }
-
     @ApiOperation("插入一个任务")
     @PostMapping("/")
     public R insertTask(

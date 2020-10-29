@@ -22,4 +22,7 @@ public class ProjStaff {
     private Integer projId;
     @ApiModelProperty("员工ID")
     private Integer staffId;
+
+    private String projName;
+    private String staffName;
 }

@@ -4,53 +4,53 @@
 
     <!-- 查询所有项目 -->
     <select id="queryProjectList" resultType="Project">
-        select *
-        from pms_horsen.project
-        where is_deleted = 0
+        SELECT *
+        FROM pms_horsen.project
+        WHERE is_deleted = 0
     </select>
 
     <!-- 根据ID查询一个项目 -->
     <select id="queryProjectById" resultType="Project" parameterType="int">
-        select *
-        from pms_horsen.project
-        where id = #{id}
-          and is_deleted = 0
+        SELECT *
+        FROM pms_horsen.project
+        WHERE id = #{id}
+          AND is_deleted = 0
     </select>
 
     <!-- 根据条件查询项目 -->
     <select id="queryProject" resultType="Project" parameterType="Project">
-        select *
-        from pms_horsen.project
+        SELECT *
+        FROM pms_horsen.project
         <where>
             is_deleted = 0
-            <if test="name != null">and name like "%"#{name}"%"</if>
-            <if test="startTime != null">and start_time = #{startTime}</if>
-            <if test="endTime != null">and end_time = #{endTime}</if>
+            <if test="name != null">AND name LIKE "%"#{name}"%"</if>
+            <if test="startTime != null">AND start_time = #{startTime}</if>
+            <if test="endTime != null">AND end_time = #{endTime}</if>
         </where>
     </select>
 
     <!-- 插入一个项目 -->
     <insert id="insertProject" parameterType="Project">
-        insert into pms_horsen.project(name, start_time, end_time)
-        values (#{name}, #{startTime}, #{endTime})
+        INSERT INTO pms_horsen.project(name, start_time, end_time)
+        VALUES (#{name}, #{startTime}, #{endTime})
     </insert>
 
     <!-- 修改一个项目 -->
     <update id="updateProject" parameterType="Project">
-        update pms_horsen.project
+        UPDATE pms_horsen.project
         <set>
-            <if test="name != null">name like "%"#{name}"%"</if>
+            <if test="name != null">name LIKE "%"#{name}"%"</if>
             <if test="startTime != null">start_time = #{startTime}</if>
             <if test="endTime != null">end_time = #{endTime}</if>
         </set>
-        where id = #{id} and is_deleted = 0
+        WHERE id = #{id} AND is_deleted = 0
     </update>
 
     <!-- 根据ID删除一个项目 -->
     <update id="deleteProject" parameterType="int">
-        update pms_horsen.project
-        set is_deleted = 1
-        where id = #{id} and is_deleted = 0
+        UPDATE pms_horsen.project
+        SET is_deleted = 1
+        WHERE id = #{id} AND is_deleted = 0
     </update>
 
     <!--  -->
