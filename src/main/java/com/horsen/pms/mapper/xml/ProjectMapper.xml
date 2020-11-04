@@ -53,5 +53,4 @@
         WHERE id = #{id} AND is_deleted = 0
     </update>
 
-    <!--  -->
 </mapper>

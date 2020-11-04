@@ -45,8 +45,10 @@ public class ProjectController {
             @ApiParam(name = "limit", value = "每页记录数", required = true)
             @PathVariable("limit") int limit) {
         PageHelper.startPage(page, limit);
-        List<Project> list = new PageInfo<>(projectService.queryProjectList()).getList();
-        return R.success().setData("items", list);
+        PageInfo<Project> pageInfo = new PageInfo<>(projectService.queryProjectList());
+        List<Project> list = pageInfo.getList();
+        long total = pageInfo.getTotal();
+        return R.success().setData("items", list).setData("total", total);
     }
 
     @ApiOperation("根据条件查询项目")
@@ -59,8 +61,10 @@ public class ProjectController {
             @ApiParam(name = "theProject", value = "查询对象")
             @RequestBody(required = false) Project theProject) {
         PageHelper.startPage(page, limit);
-        List<Project> list = new PageInfo<>(projectService.queryProject(theProject)).getList();
-        return R.success().setData("items", list);
+        PageInfo<Project> pageInfo = new PageInfo<>(projectService.queryProject(theProject));
+        List<Project> list = pageInfo.getList();
+        long total = pageInfo.getTotal();
+        return R.success().setData("items", list).setData("total", total);
     }
 
     @ApiOperation("插入一个项目")
