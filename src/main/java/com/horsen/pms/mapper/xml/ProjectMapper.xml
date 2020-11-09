@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.horsen.pms.mapper.ProjectMapper">
+    <!-- 根据项目ID查询员工姓名 -->
+    <select id="queryStaffByProjId" resultType="String">
+        SELECT GROUP_CONCAT(s.name SEPARATOR ' | ')
+        FROM pms_horsen.proj_staff ps
+                 INNER JOIN pms_horsen.staff s
+                            ON ps.staff_id = s.id
+        WHERE ps.proj_id = #{projId}
+          AND s.is_deleted = 0
+          AND ps.is_deleted = 0
+    </select>
+
+    <resultMap id="ProjectMap" type="Project">
+        <result property="id" column="id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <collection property="staffNames" column="id" javaType="String" select="queryStaffByProjId"/>
+    </resultMap>
 
     <!-- 查询所有项目 -->
-    <select id="queryProjectList" resultType="Project">
+    <select id="queryProjectList" resultMap="ProjectMap">
         SELECT *
         FROM pms_horsen.project
         WHERE is_deleted = 0
     </select>
 
     <!-- 根据ID查询一个项目 -->
-    <select id="queryProjectById" resultType="Project" parameterType="int">
+    <select id="queryProjectById" resultMap="ProjectMap" parameterType="int">
         SELECT *
         FROM pms_horsen.project
         WHERE id = #{id}
@@ -18,7 +35,7 @@
     </select>
 
     <!-- 根据条件查询项目 -->
-    <select id="queryProject" resultType="Project" parameterType="Project">
+    <select id="queryProject" resultMap="ProjectMap" parameterType="Project">
         SELECT *
         FROM pms_horsen.project
         <where>
@@ -50,7 +67,8 @@
     <update id="deleteProject" parameterType="int">
         UPDATE pms_horsen.project
         SET is_deleted = 1
-        WHERE id = #{id} AND is_deleted = 0
+        WHERE id = #{id}
+          AND is_deleted = 0
     </update>
 
 </mapper>

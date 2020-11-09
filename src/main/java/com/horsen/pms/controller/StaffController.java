@@ -59,8 +59,10 @@ public class StaffController {
             @ApiParam(name = "theStaff", value = "查询对象")
             @RequestBody(required = false) Staff theStaff) {
         PageHelper.startPage(page, limit);
-        List<Staff> list = new PageInfo<>(staffService.queryStaff(theStaff)).getList();
-        return R.success().setData("items", list);
+        PageInfo<Staff> pageInfo = new PageInfo<>(staffService.queryStaff(theStaff));
+        List<Staff> list = pageInfo.getList();
+        long total = pageInfo.getTotal();
+        return R.success().setData("items", list).setData("total", total);
     }
 
     @ApiOperation("插入一个员工")
