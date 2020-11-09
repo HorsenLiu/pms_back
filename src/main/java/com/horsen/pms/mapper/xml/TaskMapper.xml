@@ -21,25 +21,28 @@
         <association property="staffName" column="staff_id" javaType="String" select="getStaffName"/>
     </resultMap>
 
+    <!-- 查询时使用的SQL片段 -->
+    <sql id="select-for">
+        SELECT id, name, start_time, end_time, proj_id, staff_id
+        FROM pms_horsen.task
+    </sql>
+
     <!-- 查询所有任务 -->
     <select id="queryTaskList" resultMap="TaskMap">
-        SELECT *
-        FROM pms_horsen.task
+        <include refid="select-for"/>
         WHERE is_deleted = 0
     </select>
 
     <!-- 根据ID查询一个任务 -->
     <select id="queryTaskById" resultMap="TaskMap" parameterType="int">
-        SELECT *
-        FROM pms_horsen.task
+        <include refid="select-for"/>
         WHERE id = #{id}
           AND is_deleted = 0
     </select>
 
     <!-- 根据条件查询任务 -->
     <select id="queryTask" resultMap="TaskMap" parameterType="Task">
-        SELECT *
-        FROM pms_horsen.task
+        <include refid="select-for"/>
         <where>
             is_deleted = 0
             <if test="name != null">AND name LIKE "%"#{name}"%"</if>
@@ -76,17 +79,5 @@
         WHERE id = #{id}
           AND is_deleted = 0
     </update>
-
-
-    <!-- 查询所有任务 -->
-    <!--    <select id="queryTaskList" resultType="Task">
-            SELECT t.*, p.name projName, s.name staffName
-            FROM pms_horsen.task t
-                     LEFT JOIN pms_horsen.project p
-                               ON p.id = t.proj_id
-                     LEFT JOIN pms_horsen.`staff` s
-                               ON s.id = t.staff_id
-            WHERE t.is_deleted = 0
-        </select>-->
 
 </mapper>
