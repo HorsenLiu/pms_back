@@ -26,12 +26,6 @@
         FROM pms_horsen.project
     </sql>
 
-    <!-- 查询所有项目 -->
-    <select id="queryProjectList" resultMap="ProjectMap">
-        <include refid="select-for"/>
-        WHERE is_deleted = 0
-    </select>
-
     <!-- 根据ID查询一个项目 -->
     <select id="queryProjectById" resultMap="ProjectMap" parameterType="int">
         <include refid="select-for"/>

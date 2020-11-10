@@ -21,25 +21,22 @@
         <association property="staffName" column="staff_id" javaType="String" select="getStaffName"/>
     </resultMap>
 
-    <!-- 查询所有项目_员工 -->
-    <select id="queryProjStaffList" resultMap="ProjStaffMap">
-        SELECT *
+    <!-- 查询时使用的SQL片段 -->
+    <sql id="select-for">
+        SELECT id, proj_id, staff_id
         FROM pms_horsen.proj_staff
-        WHERE is_deleted = 0
-    </select>
+    </sql>
 
     <!-- 根据ID查询一个项目_员工 -->
     <select id="queryProjStaffById" resultMap="ProjStaffMap" parameterType="int">
-        SELECT *
-        FROM pms_horsen.proj_staff
+        <include refid="select-for"/>
         WHERE id = #{id}
-          AND is_deleted = 0
+        AND is_deleted = 0
     </select>
 
     <!-- 根据条件查询项目_员工 -->
     <select id="queryProjStaff" resultMap="ProjStaffMap" parameterType="ProjStaff">
-        SELECT *
-        FROM pms_horsen.proj_staff
+        <include refid="select-for"/>
         <where>
             is_deleted = 0
             <if test="projId != null">AND proj_id = #{projId}</if>
@@ -67,6 +64,7 @@
     <update id="deleteProjStaff" parameterType="int">
         UPDATE pms_horsen.proj_staff
         SET is_deleted = 1
-        WHERE id = #{id} AND is_deleted = 0
+        WHERE id = #{id}
+          AND is_deleted = 0
     </update>
 </mapper>

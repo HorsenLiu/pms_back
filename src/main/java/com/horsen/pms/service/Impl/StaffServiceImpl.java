@@ -22,11 +22,6 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public List<Staff> queryStaffList() {
-        return staffMapper.queryStaffList();
-    }
-
-    @Override
     public Staff queryStaffById(int id) {
         return staffMapper.queryStaffById(id);
     }

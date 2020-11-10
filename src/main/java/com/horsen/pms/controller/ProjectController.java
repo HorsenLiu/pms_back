@@ -37,20 +37,6 @@ public class ProjectController {
         return R.success().setData("project", project);
     }
 
-    @ApiOperation("查询所有项目")
-    @GetMapping("/{page}/{limit}")
-    public R queryProjectList(
-            @ApiParam(name = "page", value = "当前页码", required = true)
-            @PathVariable("page") int page,
-            @ApiParam(name = "limit", value = "每页记录数", required = true)
-            @PathVariable("limit") int limit) {
-        PageHelper.startPage(page, limit);
-        PageInfo<Project> pageInfo = new PageInfo<>(projectService.queryProjectList());
-        List<Project> list = pageInfo.getList();
-        long total = pageInfo.getTotal();
-        return R.success().setData("items", list).setData("total", total);
-    }
-
     @ApiOperation("根据条件查询项目")
     @PostMapping("/{page}/{limit}")
     public R queryProject(

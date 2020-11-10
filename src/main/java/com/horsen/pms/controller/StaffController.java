@@ -37,18 +37,6 @@ public class StaffController {
         return R.success().setData("staff", staff);
     }
 
-    @ApiOperation("查询所有员工")
-    @GetMapping("/{page}/{limit}")
-    public R queryStaffList(
-            @ApiParam(name = "page", value = "当前页码", required = true)
-            @PathVariable("page") int page,
-            @ApiParam(name = "limit", value = "每页记录数", required = true)
-            @PathVariable("limit") int limit) {
-        PageHelper.startPage(page, limit);
-        List<Staff> list = new PageInfo<>(staffService.queryStaffList()).getList();
-        return R.success().setData("items", list);
-    }
-
     @ApiOperation("根据条件查询员工")
     @PostMapping("/{page}/{limit}")
     public R queryStaff(

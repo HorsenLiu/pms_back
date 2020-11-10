@@ -22,11 +22,6 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> queryProjectList() {
-        return projectMapper.queryProjectList();
-    }
-
-    @Override
     public Project queryProjectById(int id) {
         return projectMapper.queryProjectById(id);
     }

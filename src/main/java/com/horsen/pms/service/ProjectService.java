@@ -9,11 +9,6 @@ import java.util.List;
  */
 public interface ProjectService {
     /**
-     * 查询所有项目
-     */
-    List<Project> queryProjectList();
-
-    /**
      * 根据ID查询一个项目
      */
     Project queryProjectById(int id);

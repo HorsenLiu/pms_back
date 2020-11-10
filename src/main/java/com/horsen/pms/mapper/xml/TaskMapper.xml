@@ -27,12 +27,6 @@
         FROM pms_horsen.task
     </sql>
 
-    <!-- 查询所有任务 -->
-    <select id="queryTaskList" resultMap="TaskMap">
-        <include refid="select-for"/>
-        WHERE is_deleted = 0
-    </select>
-
     <!-- 根据ID查询一个任务 -->
     <select id="queryTaskById" resultMap="TaskMap" parameterType="int">
         <include refid="select-for"/>

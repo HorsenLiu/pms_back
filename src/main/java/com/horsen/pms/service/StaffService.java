@@ -9,11 +9,6 @@ import java.util.List;
  */
 public interface StaffService {
     /**
-     * 查询所有员工
-     */
-    List<Staff> queryStaffList();
-
-    /**
      * 根据ID查询一个员工
      */
     Staff queryStaffById(int id);

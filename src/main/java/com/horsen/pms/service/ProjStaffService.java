@@ -9,11 +9,6 @@ import java.util.List;
  */
 public interface ProjStaffService {
     /**
-     * 查询所有项目_员工
-     */
-    List<ProjStaff> queryProjStaffList();
-
-    /**
      * 根据ID查询一个项目_员工
      */
     ProjStaff queryProjStaffById(int id);

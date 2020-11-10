@@ -37,18 +37,6 @@ public class ProjStaffController {
         return R.success().setData("projStaff", projStaff);
     }
 
-    @ApiOperation("查询所有项目_员工")
-    @GetMapping("/{page}/{limit}")
-    public R queryProjStaffList(
-            @ApiParam(name = "page", value = "当前页码", required = true)
-            @PathVariable("page") int page,
-            @ApiParam(name = "limit", value = "每页记录数", required = true)
-            @PathVariable("limit") int limit) {
-        PageHelper.startPage(page, limit);
-        List<ProjStaff> list = new PageInfo<>(projStaffService.queryProjStaffList()).getList();
-        return R.success().setData("items", list);
-    }
-
     @ApiOperation("根据条件查询项目_员工")
     @PostMapping("/{page}/{limit}")
     public R queryProjStaff(

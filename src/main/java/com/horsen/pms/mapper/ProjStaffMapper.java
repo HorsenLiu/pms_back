@@ -9,11 +9,6 @@ import java.util.List;
 @Repository
 public interface ProjStaffMapper {
     /**
-     * 查询所有项目_员工
-     */
-    List<ProjStaff> queryProjStaffList();
-
-    /**
      * 根据ID查询一个项目_员工
      */
     ProjStaff queryProjStaffById(@Param("id") int id);

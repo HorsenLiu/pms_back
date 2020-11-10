@@ -12,11 +12,6 @@ import java.util.List;
 @Repository
 public interface StaffMapper {
     /**
-     * 查询所有员工
-     */
-    List<Staff> queryStaffList();
-
-    /**
      * 根据ID查询一个员工
      */
     Staff queryStaffById(@Param("id") int id);
@@ -25,6 +20,16 @@ public interface StaffMapper {
      * 根据条件查询员工
      */
     List<Staff> queryStaff(Staff staff);
+
+    /**
+     * 查询员工姓名
+     */
+    List<String> queryStaffNames(Staff staff);
+
+    /**
+     * 根据项目ID查询员工姓名
+     */
+    List<String> queryStaffNamesByProjId(@Param("projId") int projId);
 
     /**
      * 插入一个员工

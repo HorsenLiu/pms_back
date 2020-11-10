@@ -9,11 +9,6 @@ import java.util.List;
  */
 public interface TaskService {
     /**
-     * 查询所有任务
-     */
-    List<Task> queryTaskList();
-
-    /**
      * 根据ID查询一个任务
      */
     Task queryTaskById(int id);

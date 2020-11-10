@@ -22,11 +22,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> queryTaskList() {
-        return taskMapper.queryTaskList();
-    }
-
-    @Override
     public Task queryTaskById(int id) {
         return taskMapper.queryTaskById(id);
     }

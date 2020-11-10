@@ -22,11 +22,6 @@ public class ProjStaffServiceImpl implements ProjStaffService {
     }
 
     @Override
-    public List<ProjStaff> queryProjStaffList() {
-        return projStaffMapper.queryProjStaffList();
-    }
-
-    @Override
     public ProjStaff queryProjStaffById(int id) {
         return projStaffMapper.queryProjStaffById(id);
     }

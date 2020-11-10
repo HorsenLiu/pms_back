@@ -37,18 +37,6 @@ public class TaskController {
         return R.success().setData("task", task);
     }
 
-    @ApiOperation("查询所有任务")
-    @GetMapping("/{page}/{limit}")
-    public R queryTaskList(
-            @ApiParam(name = "page", value = "当前页码", required = true)
-            @PathVariable("page") int page,
-            @ApiParam(name = "limit", value = "每页记录数", required = true)
-            @PathVariable("limit") int limit) {
-        PageHelper.startPage(page, limit);
-        List<Task> list = new PageInfo<>(taskService.queryTaskList()).getList();
-        return R.success().setData("items", list);
-    }
-
     @ApiOperation("根据条件查询任务")
     @PostMapping("/{page}/{limit}")
     public R queryTask(
