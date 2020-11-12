@@ -9,27 +9,17 @@ import java.util.List;
 @Repository
 public interface ProjStaffMapper {
     /**
-     * 根据ID查询一个项目_员工
-     */
-    ProjStaff queryProjStaffById(@Param("id") int id);
-
-    /**
      * 根据条件查询项目_员工
      */
     List<ProjStaff> queryProjStaff(ProjStaff projStaff);
 
     /**
-     * 插入一个项目_员工
+     * 插入一组项目_员工
      */
-    int insertProjStaff(ProjStaff projStaff);
+    int insertProjStaff(@Param("projId") int projId, @Param("staffIds") List<Integer> staffIds);
 
     /**
-     * 修改一个项目_员工
+     * 根据项目ID删除所有对应的项目_员工
      */
-    int updateProjStaff(ProjStaff projStaff);
-
-    /**
-     * 根据ID删除一个项目_员工
-     */
-    int deleteProjStaff(@Param("id") int id);
+    int deleteProjStaff(@Param("projId") int projId);
 }

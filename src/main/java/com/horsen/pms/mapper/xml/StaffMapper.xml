@@ -1,38 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.horsen.pms.mapper.StaffMapper">
-    <!-- 查询时使用的SQL片段 -->
-    <sql id="select-for">
+    <!-- SQL片段 -->
+    <!-- 查询字段 -->
+    <sql id="select-column">
         SELECT id, name, age, graduate_school, degree, graduate_time
         FROM pms_horsen.staff
+    </sql>
+    <!-- 查询条件 -->
+    <sql id="select-where">
+        is_deleted = 0
+        <if test="name != null">AND name LIKE "%"#{name}"%"</if>
+        <if test="age != null">AND age = #{age}</if>
+        <if test="graduateSchool != null">AND graduate_school LIKE "%"#{graduateSchool}"%"</if>
+        <if test="degree != null">AND degree = #{degree}</if>
+        <if test="graduateTime != null">AND graduate_time = #{graduateTime}</if>
     </sql>
 
     <!-- 查询所有员工 -->
     <select id="queryStaffList" resultType="Staff">
-        <include refid="select-for"/>
+        <include refid="select-column"/>
         WHERE is_deleted = 0
     </select>
 
     <!-- 根据ID查询一个员工 -->
     <select id="queryStaffById" resultType="Staff" parameterType="int">
-        <include refid="select-for"/>
+        <include refid="select-column"/>
         WHERE id = #{id}
         AND is_deleted = 0
     </select>
 
     <!-- 根据条件查询员工 -->
     <select id="queryStaff" resultType="Staff" parameterType="Staff">
-        <include refid="select-for"/>
+        <include refid="select-column"/>
         <where>
-            is_deleted = 0
-            <if test="name != null">AND name LIKE "%"#{name}"%"</if>
-            <if test="age != null">AND age = #{age}</if>
-            <if test="graduateSchool != null">AND graduate_school LIKE "%"#{graduateSchool}"%"</if>
-            <if test="degree != null">AND degree = #{degree}</if>
-            <if test="graduateTime != null">AND graduate_time = #{graduateTime}</if>
+            <include refid="select-where"/>
         </where>
     </select>
-    <!-- 查询员工姓名 -->
+
+    <!-- 根据条件查询员工姓名 -->
+    <select id="queryStaffNames" resultType="HashMap" parameterType="Staff">
+        SELECT id as 'key', name as 'value'
+        FROM pms_horsen.staff
+        <where>
+            <include refid="select-where"/>
+        </where>
+    </select>
+
+    <!-- 根据项目ID查询员工ID -->
+    <select id="queryStaffIdsByProjId" resultType="int" parameterType="int">
+        SELECT s.id
+        FROM pms_horsen.staff s
+                 INNER JOIN pms_horsen.proj_staff ps
+                            ON ps.staff_id = s.id
+        WHERE ps.proj_id = #{projId}
+          AND s.is_deleted = 0
+          AND ps.is_deleted = 0
+    </select>
+
+
     <!-- 插入一个员工 -->
     <insert id="insertStaff" parameterType="Staff">
         INSERT INTO pms_horsen.staff(name, age, graduate_school, degree, graduate_time)

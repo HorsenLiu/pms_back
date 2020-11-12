@@ -23,16 +23,9 @@
 
     <!-- 查询时使用的SQL片段 -->
     <sql id="select-for">
-        SELECT id, proj_id, staff_id
+        SELECT proj_id, staff_id
         FROM pms_horsen.proj_staff
     </sql>
-
-    <!-- 根据ID查询一个项目_员工 -->
-    <select id="queryProjStaffById" resultMap="ProjStaffMap" parameterType="int">
-        <include refid="select-for"/>
-        WHERE id = #{id}
-        AND is_deleted = 0
-    </select>
 
     <!-- 根据条件查询项目_员工 -->
     <select id="queryProjStaff" resultMap="ProjStaffMap" parameterType="ProjStaff">
@@ -44,27 +37,19 @@
         </where>
     </select>
 
-    <!-- 插入一个项目_员工 -->
-    <insert id="insertProjStaff" parameterType="ProjStaff">
-        INSERT INTO pms_horsen.proj_staff(proj_id, staff_id)
-        VALUES (#{projId}, #{staffId})
+    <!-- 插入一组项目_员工 -->
+    <insert id="insertProjStaff">
+        INSERT INTO pms_horsen.proj_staff(proj_id, staff_id) VALUES
+        <foreach collection="staffIds" item="staffId" separator=",">
+            (#{projId}, #{staffId})
+        </foreach>
+
     </insert>
 
-    <!-- 修改一个项目_员工 -->
-    <update id="updateProjStaff" parameterType="ProjStaff">
-        UPDATE pms_horsen.proj_staff
-        <set>
-            <if test="projId != null">proj_id = #{projId}</if>
-            <if test="staffId != null">staff_id = #{staffId}</if>
-        </set>
-        WHERE id = #{id} AND is_deleted = 0
-    </update>
-
-    <!-- 根据ID删除一个项目_员工 -->
-    <update id="deleteProjStaff" parameterType="int">
-        UPDATE pms_horsen.proj_staff
-        SET is_deleted = 1
-        WHERE id = #{id}
-          AND is_deleted = 0
+    <!-- 根据项目ID删除所有对应的项目_员工 -->
+    <update id="deleteProjStaff">
+        DELETE
+        FROM pms_horsen.proj_staff
+        WHERE proj_id = #{projId}
     </update>
 </mapper>

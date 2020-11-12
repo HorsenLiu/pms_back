@@ -9,11 +9,6 @@ import java.util.List;
  */
 public interface ProjStaffService {
     /**
-     * 根据ID查询一个项目_员工
-     */
-    ProjStaff queryProjStaffById(int id);
-
-    /**
      * 根据条件查询项目_员工
      */
     List<ProjStaff> queryProjStaff(ProjStaff projStaff);
@@ -21,15 +16,10 @@ public interface ProjStaffService {
     /**
      * 插入一个项目_员工
      */
-    int insertProjStaff(ProjStaff projStaff);
+    int insertProjStaff(int projId, List<Integer> staffIds);
 
     /**
-     * 修改一个项目_员工
+     * 根据项目ID删除所有对应的项目_员工
      */
-    int updateProjStaff(ProjStaff projStaff);
-
-    /**
-     * 根据ID删除一个项目_员工
-     */
-    int deleteProjStaff(int id);
+    int deleteProjStaff(int projId);
 }

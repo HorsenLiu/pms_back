@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Horsen
@@ -24,12 +25,12 @@ public interface StaffMapper {
     /**
      * 查询员工姓名
      */
-    List<String> queryStaffNames(Staff staff);
+    List<Map<Integer, String>> queryStaffNames(Staff staff);
 
     /**
-     * 根据项目ID查询员工姓名
+     * 根据项目ID查询员工ID
      */
-    List<String> queryStaffNamesByProjId(@Param("projId") int projId);
+    List<Integer> queryStaffIdsByProjId(@Param("projId") int projId);
 
     /**
      * 插入一个员工

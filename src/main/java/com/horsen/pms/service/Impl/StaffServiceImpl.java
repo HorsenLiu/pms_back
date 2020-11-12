@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Horsen
@@ -19,6 +20,16 @@ public class StaffServiceImpl implements StaffService {
     @Autowired
     public StaffServiceImpl(StaffMapper staffMapper) {
         this.staffMapper = staffMapper;
+    }
+
+    @Override
+    public List<Map<Integer, String>> queryStaffNames(Staff staff) {
+        return staffMapper.queryStaffNames(staff);
+    }
+
+    @Override
+    public List<Integer> queryStaffIdsByProjId(int projId) {
+        return staffMapper.queryStaffIdsByProjId(projId);
     }
 
     @Override

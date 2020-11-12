@@ -22,27 +22,17 @@ public class ProjStaffServiceImpl implements ProjStaffService {
     }
 
     @Override
-    public ProjStaff queryProjStaffById(int id) {
-        return projStaffMapper.queryProjStaffById(id);
-    }
-
-    @Override
     public List<ProjStaff> queryProjStaff(ProjStaff projStaff) {
         return projStaffMapper.queryProjStaff(projStaff);
     }
 
     @Override
-    public int insertProjStaff(ProjStaff projStaff) {
-        return projStaffMapper.insertProjStaff(projStaff);
+    public int insertProjStaff(int projId, List<Integer> staffIds) {
+        return projStaffMapper.insertProjStaff(projId, staffIds);
     }
 
     @Override
-    public int updateProjStaff(ProjStaff projStaff) {
-        return projStaffMapper.updateProjStaff(projStaff);
-    }
-
-    @Override
-    public int deleteProjStaff(int id) {
-        return projStaffMapper.deleteProjStaff(id);
+    public int deleteProjStaff(int projId) {
+        return projStaffMapper.deleteProjStaff(projId);
     }
 }

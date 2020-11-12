@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Horsen
@@ -51,6 +52,25 @@ public class StaffController {
         List<Staff> list = pageInfo.getList();
         long total = pageInfo.getTotal();
         return R.success().setData("items", list).setData("total", total);
+    }
+
+    @ApiOperation("根据条件查询员工姓名")
+    @PostMapping("/names")
+    public R queryStaffNames(
+            @ApiParam(name = "theStaff", value = "查询对象")
+            @RequestBody(required = false) Staff theStaff) {
+        List<Map<Integer, String>> names = staffService.queryStaffNames(theStaff);
+        return R.success().setData("names", names);
+    }
+
+    @ApiOperation("根据项目ID查询员工ID")
+    @GetMapping("/names/{projId}")
+    public R queryStaffNamesByProjId(
+            @ApiParam(name = "projId", value = "项目ID", required = true)
+            @PathVariable("projId") Integer projId) {
+        List<Integer> ids = staffService.queryStaffIdsByProjId(projId);
+        boolean isEmpty = ids.isEmpty();
+        return R.success().setData("ids", ids).setData("isEmpty", isEmpty);
     }
 
     @ApiOperation("插入一个员工")

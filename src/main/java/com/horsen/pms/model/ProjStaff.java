@@ -16,8 +16,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ApiModel(value = "ProjStaff对象", description = "项目_员工")
 public class ProjStaff {
-    @ApiModelProperty("主键ID")
-    private Integer id;
     @ApiModelProperty("项目ID")
     private Integer projId;
     @ApiModelProperty("员工ID")
