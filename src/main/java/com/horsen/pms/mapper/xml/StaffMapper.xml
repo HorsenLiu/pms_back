@@ -47,6 +47,17 @@
         </where>
     </select>
 
+    <!-- 根据项目ID查询员工姓名 -->
+    <select id="queryStaffNamesByProjId" resultType="HashMap" parameterType="int">
+        SELECT s.id as 'key', s.name as 'value'
+        FROM pms_horsen.staff s
+                 INNER JOIN pms_horsen.proj_staff ps
+                            ON ps.staff_id = s.id
+        WHERE ps.proj_id = #{projId}
+          AND s.is_deleted = 0
+          AND ps.is_deleted = 0
+    </select>
+
     <!-- 根据项目ID查询员工ID -->
     <select id="queryStaffIdsByProjId" resultType="int" parameterType="int">
         SELECT s.id
@@ -69,11 +80,11 @@
     <update id="updateStaff" parameterType="Staff">
         update pms_horsen.staff
         <set>
-            <if test="name != null">name = #{name}</if>
-            <if test="age != null">age = #{age}</if>
-            <if test="graduateSchool != null">graduate_school = #{graduateSchool}</if>
-            <if test="degree != null">degree = #{degree}</if>
-            <if test="graduateTime != null">graduate_time = #{graduateTime}</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="graduateSchool != null">graduate_school = #{graduateSchool},</if>
+            <if test="degree != null">degree = #{degree},</if>
+            <if test="graduateTime != null">graduate_time = #{graduateTime},</if>
         </set>
         WHERE id = #{id} AND is_deleted = 0
     </update>

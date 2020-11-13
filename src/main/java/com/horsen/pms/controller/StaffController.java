@@ -63,9 +63,18 @@ public class StaffController {
         return R.success().setData("names", names);
     }
 
-    @ApiOperation("根据项目ID查询员工ID")
+    @ApiOperation("根据项目ID查询员工姓名")
     @GetMapping("/names/{projId}")
     public R queryStaffNamesByProjId(
+            @ApiParam(name = "projId", value = "项目ID", required = true)
+            @PathVariable("projId") Integer projId) {
+        List<Map<Integer, String>> names = staffService.queryStaffNamesByProjId(projId);
+        return R.success().setData("names", names);
+    }
+
+    @ApiOperation("根据项目ID查询员工ID")
+    @GetMapping("/ids/{projId}")
+    public R queryStaffIdsByProjId(
             @ApiParam(name = "projId", value = "项目ID", required = true)
             @PathVariable("projId") Integer projId) {
         List<Integer> ids = staffService.queryStaffIdsByProjId(projId);

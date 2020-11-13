@@ -57,11 +57,11 @@
     <update id="updateTask" parameterType="Task">
         UPDATE pms_horsen.task
         <set>
-            <if test="name != null">name LIKE "%"#{name}"%"</if>
-            <if test="startTime != null">start_time = #{startTime}</if>
-            <if test="endTime != null">end_time = #{endTime}</if>
-            <if test="projId != null">proj_id = #{projId}</if>
-            <if test="staffId != null">staff_id = #{staffId}</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="projId != null">proj_id = #{projId},</if>
+            <if test="staffId != null">staff_id = #{staffId},</if>
         </set>
         WHERE id = #{id} AND is_deleted = 0
     </update>

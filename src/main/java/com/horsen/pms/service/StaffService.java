@@ -27,6 +27,11 @@ public interface StaffService {
     /**
      * 根据项目ID查询员工姓名
      */
+    List<Map<Integer, String>> queryStaffNamesByProjId(int projId);
+
+    /**
+     * 根据项目ID查询员工姓名
+     */
     List<Integer> queryStaffIdsByProjId(int projId);
 
     /**

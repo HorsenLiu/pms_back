@@ -28,6 +28,11 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
+    public List<Map<Integer, String>> queryStaffNamesByProjId(int projId) {
+        return staffMapper.queryStaffNamesByProjId(projId);
+    }
+
+    @Override
     public List<Integer> queryStaffIdsByProjId(int projId) {
         return staffMapper.queryStaffIdsByProjId(projId);
     }

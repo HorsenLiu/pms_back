@@ -47,8 +47,10 @@ public class TaskController {
             @ApiParam(name = "theTask", value = "查询对象")
             @RequestBody(required = false) Task theTask) {
         PageHelper.startPage(page, limit);
-        List<Task> list = new PageInfo<>(taskService.queryTask(theTask)).getList();
-        return R.success().setData("items", list);
+        PageInfo<Task> pageInfo = new PageInfo<>(taskService.queryTask(theTask));
+        List<Task> list = pageInfo.getList();
+        long total = pageInfo.getTotal();
+        return R.success().setData("items", list).setData("total",total);
     }
 
     @ApiOperation("插入一个任务")

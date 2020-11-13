@@ -28,6 +28,11 @@ public interface StaffMapper {
     List<Map<Integer, String>> queryStaffNames(Staff staff);
 
     /**
+     * 根据项目ID查询员工姓名
+     */
+    List<Map<Integer, String>> queryStaffNamesByProjId(@Param("projId") int projId);
+
+    /**
      * 根据项目ID查询员工ID
      */
     List<Integer> queryStaffIdsByProjId(@Param("projId") int projId);

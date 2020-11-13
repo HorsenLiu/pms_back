@@ -54,9 +54,9 @@
     <update id="updateProject" parameterType="Project">
         UPDATE pms_horsen.project
         <set>
-            <if test="name != null">name LIKE "%"#{name}"%"</if>
-            <if test="startTime != null">start_time = #{startTime}</if>
-            <if test="endTime != null">end_time = #{endTime}</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
         </set>
         WHERE id = #{id} AND is_deleted = 0
     </update>
