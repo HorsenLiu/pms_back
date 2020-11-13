@@ -32,6 +32,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Project> queryProjectByStaffId(int staffId) {
+        return projectMapper.queryProjectByStaffId(staffId);
+    }
+
+    @Override
     public int insertProject(Project project) {
         return projectMapper.insertProject(project);
     }

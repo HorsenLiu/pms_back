@@ -53,6 +53,22 @@ public class ProjectController {
         return R.success().setData("items", list).setData("total", total);
     }
 
+    @ApiOperation("根据员工ID查询项目")
+    @GetMapping("/{page}/{limit}/{staffId}")
+    public R queryProjectByStaffId(
+            @ApiParam(name = "page", value = "当前页码", required = true)
+            @PathVariable("page") int page,
+            @ApiParam(name = "limit", value = "每页记录数", required = true)
+            @PathVariable("limit") int limit,
+            @ApiParam(name = "staffId", value = "员工ID", required = true)
+            @PathVariable("staffId") int staffId) {
+        PageHelper.startPage(page, limit);
+        PageInfo<Project> pageInfo = new PageInfo<>(projectService.queryProjectByStaffId(staffId));
+        List<Project> list = pageInfo.getList();
+        long total = pageInfo.getTotal();
+        return R.success().setData("items", list).setData("total", total);
+    }
+
     @ApiOperation("插入一个项目")
     @PostMapping("/")
     public R insertProject(

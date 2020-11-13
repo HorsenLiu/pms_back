@@ -19,6 +19,11 @@ public interface ProjectMapper {
     List<Project> queryProject(Project project);
 
     /**
+     * 根据员工ID查询项目
+     */
+    List<Project> queryProjectByStaffId(@Param("staffId") int staffId);
+
+    /**
      * 插入一个项目
      */
     int insertProject(Project project);

@@ -44,6 +44,17 @@
         </where>
     </select>
 
+    <!-- 根据员工ID查询项目 -->
+    <select id="queryProjectByStaffId" resultMap="ProjectMap" parameterType="int">
+        SELECT id, name, start_time, end_time
+        FROM pms_horsen.project p
+                 INNER JOIN pms_horsen.proj_staff ps
+                            ON ps.proj_id = p.id
+        WHERE ps.staff_id = #{staffId}
+          AND p.is_deleted = 0
+          AND ps.is_deleted = 0
+    </select>
+
     <!-- 插入一个项目 -->
     <insert id="insertProject" parameterType="Project">
         INSERT INTO pms_horsen.project(name, start_time, end_time)

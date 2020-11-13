@@ -19,6 +19,11 @@ public interface ProjectService {
     List<Project> queryProject(Project project);
 
     /**
+     * 根据员工ID查询项目
+     */
+    List<Project> queryProjectByStaffId(int staffId);
+
+    /**
      * 插入一个项目
      */
     int insertProject(Project project);
